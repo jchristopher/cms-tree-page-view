@@ -152,7 +152,7 @@ var cms_tree_page_view = (function ($) {
 	 */
 	my.log = function(what) {
 		if (typeof(window.console) === "object" && typeof(window.console.log) === "function" ) {
-			console.log(what);
+			// console.log(what);
 		}
 	};
 
