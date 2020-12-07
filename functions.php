@@ -749,6 +749,7 @@ function cms_tpv_options() {
 							continue;
 						}
 
+
 						$name = $one_post_type->name;
 
 						if ($name === "post") {
@@ -801,7 +802,7 @@ function cms_tpv_options() {
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="cms_tpv_action" value="save_settings" />
 			<?php // TODO: why is the line below needed? gives deprecated errors ?>
-			<input type="hidden" name="page_options" value="<?php echo join($arr_page_options, ",") ?>" />
+			<input type="hidden" name="page_options" value="<?php echo esc_attr( implode( ',', $arr_page_options ) ); ?>" />
 			<p class="submit">
 				<input type="submit" class="button-primary" value="<?php _e('Save Changes', 'cms-tree-page-view') ?>" />
 			</p>
