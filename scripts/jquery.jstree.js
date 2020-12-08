@@ -289,6 +289,7 @@ if (!Array.isArray) {
 				'.jstree ins { display:inline-block; text-decoration:none; width:18px; height:18px; margin:0 0 0 0; padding:0; } ' +
 				'.jstree a { display:inline-block; line-height:16px; height:16px; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } ' +
 				'.jstree a:focus { outline: none; } ' +
+				'.jstree li > ins { transform: translateY(-5px); } ' +
 				'.jstree a > ins { height:16px; width:16px; } ' +
 				'.jstree a > .jstree-icon { margin-right:3px; } ' +
 				'.jstree-rtl a > .jstree-icon { margin-left:3px; margin-right:0; } ' +
@@ -364,7 +365,7 @@ if (!Array.isArray) {
 				this.data.core.li_height = this.get_container_ul().find("li.jstree-closed, li.jstree-leaf").eq(0).height() || 18;
 
 				this.get_container()
-					.on("li > ins", "click.jstree", $.proxy(function (event) {
+					.on("click.jstree", "li > ins", $.proxy(function (event) {
 							var trgt = $(event.target);
 							if(trgt.is("ins") && event.pageY - trgt.offset().top < this.data.core.li_height) { this.toggle_node(trgt); }
 						}, this))
@@ -1012,19 +1013,19 @@ if (!Array.isArray) {
 			this.data.ui.to_select = this.get_settings().ui.initially_select;
 
 			this.get_container()
-				.on("a", "click.jstree", $.proxy(function (event) {
+				.on("click.jstree", "a", $.proxy(function (event) {
 						event.preventDefault();
 						event.currentTarget.blur();
 						if(!$(event.currentTarget).hasClass("jstree-loading")) {
 							this.select_node(event.currentTarget, true, event);
 						}
 					}, this))
-				.on("a", "mouseenter.jstree", $.proxy(function (event) {
+				.on("mouseenter.jstree", "a", $.proxy(function (event) {
 						if(!$(event.currentTarget).hasClass("jstree-loading")) {
 							this.hover_node(event.target);
 						}
 					}, this))
-				.on("a", "mouseleave.jstree", $.proxy(function (event) {
+				.on("mouseleave.jstree", "a", $.proxy(function (event) {
 						if(!$(event.currentTarget).hasClass("jstree-loading")) {
 							this.dehover_node(event.target);
 						}
