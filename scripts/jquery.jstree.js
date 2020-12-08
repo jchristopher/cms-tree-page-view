@@ -2395,18 +2395,18 @@ if (!Array.isArray) {
 							ml.hide();
 						}
 					}, this))
-				.on("a", "mousedown.jstree", $.proxy(function (e) {
+				.on("mousedown.jstree", "a",$.proxy(function (e) {
 						if(e.which === 1) {
 							this.start_drag(e.currentTarget, e);
 							return false;
 						}
 					}, this))
-				.on("a", "mouseenter.jstree", $.proxy(function (e) {
+				.on("mouseenter.jstree", "a", $.proxy(function (e) {
 						if($.vakata.dnd.is_drag && $.vakata.dnd.user_data.jstree) {
 							this.dnd_enter(e.currentTarget);
 						}
 					}, this))
-				.on("a", "mousemove.jstree", $.proxy(function (e) {
+				.on("mousemove.jstree", "a", $.proxy(function (e) {
 						if($.vakata.dnd.is_drag && $.vakata.dnd.user_data.jstree) {
 							if(!r || !r.length || r.children("a")[0] !== e.currentTarget) {
 								this.dnd_enter(e.currentTarget);
@@ -2417,7 +2417,7 @@ if (!Array.isArray) {
 							this.dnd_show();
 						}
 					}, this))
-				.on("a", "mouseleave.jstree", $.proxy(function (e) {
+				.on("mouseleave.jstree", "a", $.proxy(function (e) {
 						if($.vakata.dnd.is_drag && $.vakata.dnd.user_data.jstree) {
 							if(e.relatedTarget && e.relatedTarget.id && e.relatedTarget.id === "jstree-marker-line") {
 								return false;
@@ -2437,7 +2437,7 @@ if (!Array.isArray) {
 							0);
 						}
 					}, this))
-				.on("a", "mouseup.jstree", $.proxy(function (e) {
+				.on("mouseup.jstree", "a", $.proxy(function (e) {
 						if($.vakata.dnd.is_drag && $.vakata.dnd.user_data.jstree) {
 							this.dnd_finish(e);
 						}
@@ -2490,7 +2490,7 @@ if (!Array.isArray) {
 			var s = this._get_settings().dnd;
 			if(s.drag_target) {
 				$(document)
-					.on(s.drag_target, "mousedown.jstree-" + this.get_index(), $.proxy(function (e) {
+					.on("mousedown.jstree-" + this.get_index(), s.drag_target, $.proxy(function (e) {
 						o = e.target;
 						$.vakata.dnd.drag_start(e, { jstree : true, obj : e.target }, "<ins class='jstree-icon'></ins>" + $(e.target).text() );
 						if(this.data.themes) {
@@ -2509,17 +2509,17 @@ if (!Array.isArray) {
 			}
 			if(s.drop_target) {
 				$(document)
-					.on(s.drop_target, "mouseenter.jstree-" + this.get_index(), $.proxy(function (e) {
+					.on("mouseenter.jstree-" + this.get_index(), s.drop_target, $.proxy(function (e) {
 							if(this.data.dnd.active && this._get_settings().dnd.drop_check.call(this, { "o" : o, "r" : $(e.target), "e" : e })) {
 								$.vakata.dnd.helper.children("ins").attr("class","jstree-ok");
 							}
 						}, this))
-					.on(s.drop_target, "mouseleave.jstree-" + this.get_index(), $.proxy(function (e) {
+					.on("mouseleave.jstree-" + this.get_index(), s.drop_target, $.proxy(function (e) {
 							if(this.data.dnd.active) {
 								$.vakata.dnd.helper.children("ins").attr("class","jstree-invalid");
 							}
 						}, this))
-					.on(s.drop_target, "mouseup.jstree-" + this.get_index(), $.proxy(function (e) {
+					.on("mouseup.jstree-" + this.get_index(), s.drop_target, $.proxy(function (e) {
 							if(this.data.dnd.active && $.vakata.dnd.helper.children("ins").hasClass("jstree-ok")) {
 								this._get_settings().dnd.drop_finish.call(this, { "o" : o, "r" : $(e.target), "e" : e });
 							}
@@ -2771,7 +2771,7 @@ if (!Array.isArray) {
 				.on("loaded.jstree", $.proxy(function (e) {
 						this._prepare_checkboxes();
 					}, this))
-				.on( (this.data.ui && this.data.checkbox.noui ? "a" : "ins.jstree-checkbox") , "click.jstree", $.proxy(function (e) {
+				.on("click.jstree", (this.data.ui && this.data.checkbox.noui ? "a" : "ins.jstree-checkbox"), $.proxy(function (e) {
 						e.preventDefault();
 						if(this._get_node(e.target).hasClass("jstree-checked")) { this.uncheck_node(e.target); }
 						else { this.check_node(e.target); }
@@ -3630,14 +3630,14 @@ if (!Array.isArray) {
 			'#vakata-contextmenu li.vakata-separator { min-height:0; height:1px; line-height:1px; font-size:1px; overflow:hidden; margin:0 2px; background:silver; /* border-top:1px solid #fefefe; */ padding:0; } ';
 		$.vakata.css.add_sheet({ str : css_string, title : "vakata" });
 		$.vakata.context.cnt
-			.on("a","click", function (e) { e.preventDefault(); })
-			.on("a","mouseup", function (e) {
+			.on("click","a", function (e) { e.preventDefault(); })
+			.on("mouseup","a", function (e) {
 				if(!$(this).parent().hasClass("jstree-contextmenu-disabled") && $.vakata.context.exec($(this).attr("rel"))) {
 					$.vakata.context.hide();
 				}
 				else { $(this).blur(); }
 			})
-			.on("a","mouseover", function () {
+			.on("mouseover","a", function () {
 				$.vakata.context.cnt.find(".vakata-hover").removeClass("vakata-hover");
 			})
 			.appendTo("body");
@@ -3691,13 +3691,13 @@ if (!Array.isArray) {
 	$.jstree.plugin("contextmenu", {
 		__init : function () {
 			this.get_container()
-				.on("a", "contextmenu.jstree", $.proxy(function (e) {
+				.on("contextmenu.jstree", "a", $.proxy(function (e) {
 						e.preventDefault();
 						if(!$(e.currentTarget).hasClass("jstree-loading")) {
 							this.show_contextmenu(e.currentTarget, e.pageX, e.pageY);
 						}
 					}, this))
-				.on("a", "click.jstree", $.proxy(function (e) {
+				.on("click.jstree", "a", $.proxy(function (e) {
 						if(this.data.contextmenu) {
 							$.vakata.context.hide();
 						}
@@ -4161,12 +4161,12 @@ if (!Array.isArray) {
 			this.get_container()
 				.addClass("ui-widget-content")
 				.addClass("jstree-themeroller")
-				.on("a","mouseenter.jstree", function (e) {
+				.on("mouseenter.jstree", "a", function (e) {
 					if(!$(e.currentTarget).hasClass("jstree-loading")) {
 						$(this).addClass(s.item_h);
 					}
 				})
-				.on("a","mouseleave.jstree", function () {
+				.on("mouseleave.jstree", "a", function () {
 					$(this).removeClass(s.item_h);
 				})
 				.on("init.jstree", $.proxy(function (e, data) {
@@ -4407,19 +4407,19 @@ if (!Array.isArray) {
 							ref.children("a").attr("class",data.rslt.obj.children(".jstree-hovered").attr("class"));
 						}
 					}, this))
-				.on(".jstree-wholerow-span, ins.jstree-icon, li", "click.jstree", function (e) {
+				.on("click.jstree", ".jstree-wholerow-span, ins.jstree-icon, li", function (e) {
 						var n = $(e.currentTarget);
 						if(e.target.tagName === "A" || (e.target.tagName === "INS" && n.closest("li").is(".jstree-open, .jstree-closed"))) { return; }
 						n.closest("li").children("a:visible:eq(0)").click();
 						e.stopImmediatePropagation();
 					})
-				.on("li", "mouseover.jstree", $.proxy(function (e) {
+				.on("mouseover.jstree", "li", $.proxy(function (e) {
 						e.stopImmediatePropagation();
 						if($(e.currentTarget).children(".jstree-hovered, .jstree-clicked").length) { return false; }
 						this.hover_node(e.currentTarget);
 						return false;
 					}, this))
-				.on("li", "mouseleave.jstree", $.proxy(function (e) {
+				.on("mouseleave.jstree", "li", $.proxy(function (e) {
 						if($(e.currentTarget).children("a").hasClass("jstree-hovered").length) { return; }
 						this.dehover_node(e.currentTarget);
 					}, this));

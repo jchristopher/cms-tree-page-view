@@ -5,7 +5,7 @@ Tags: page, pages, posts, custom posts, tree, cms, dashboard, overview, drag-and
 Text Domain: cms-tree-page-view
 Requires at least: 3.8
 Tested up to: 5.6.0
-Stable tag: 1.6.3
+Stable tag: 1.6.4
 
 Adds a tree view of all pages & custom posts. Get a great overview + options to drag & drop to reorder & option to add multiple pages.
 
@@ -116,15 +116,17 @@ Now the tree with the pages will be visible both on the dashboard and in the men
 
 == Changelog ==
 
+= 1.6.4 (December 2020) =
+
+Please [create Issues](https://github.com/jchristopher/cms-tree-page-view/issues) for any jQuery deprecations (or other issues) you come across!
+
+- Fixes regression introduced in 1.6.2 that prevented dragging/dropping in the updated version of jQuery.
+
 = 1.6.3 (December 2020) =
 
-Please [create Issues](https://github.com/jchristopher/cms-tree-page-view/issues) for any jQuery deprecations (or other issues) you come across!
-
-- Fixes regression introduced in 1.6.2 that prevented expanding parents.
+- Fixes regression introduced in 1.6.2 that prevented expanding parents in the updated version of jQuery.
 
 = 1.6.2 (December 2020) =
-
-Please [create Issues](https://github.com/jchristopher/cms-tree-page-view/issues) for any jQuery deprecations (or other issues) you come across!
 
 - Fixes a number of jQuery deprecations
 
