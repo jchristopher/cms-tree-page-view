@@ -1336,7 +1336,7 @@ function cms_tpv_parse_query($q) {
  * Output JSON for the children of a node
  * $arrOpenChilds = array with id of pages to open children on
  */
-function cms_tpv_print_childs($pageID, $view = "all", $arrOpenChilds = null, $post_type) {
+function cms_tpv_print_childs($pageID, $view = "all", $arrOpenChilds = null, $post_type = "") {
 
 	$arrPages = cms_tpv_get_pages("parent=$pageID&view=$view&post_type=$post_type");
 
