@@ -5,7 +5,7 @@ Plugin URI: https://github.com/jchristopher/cms-tree-page-view
 Description: Adds a CMS-like tree view of all your pages, like the view often found in a page-focused CMS. Use the tree view to edit, view, add pages and search pages (very useful if you have many pages). And with drag and drop you can rearrange the order of your pages. Page management won't get any easier than this!
 Text Domain: cms-tree-page-view
 Domain Path: /languages/
-Version: 1.6.4
+Version: 1.6.5
 Author: Jon Christopher
 Author URI: https://jonchristopher.us/
 License: GPL2
@@ -29,7 +29,7 @@ License: GPL2
 
 #require("functions.php");
 
-define( "CMS_TPV_VERSION", "1.6.3");
+define( "CMS_TPV_VERSION", "1.6.5");
 define( "CMS_TPV_NAME", "CMS Tree Page View");
 
 require(dirname(__FILE__) . "/functions.php");
